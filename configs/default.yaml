@@ -1,0 +1,68 @@
+detector:
+  model: yolo11n.pt
+  device: auto
+  image_size: 640
+  confidence_high: 0.50
+  confidence_low: 0.15
+  nms_iou: 0.70
+  max_detections: 300
+  half_precision: false
+  classes:
+    - person
+    - bicycle
+    - car
+    - motorcycle
+    - bus
+    - truck
+    - traffic light
+    - stop sign
+
+tracker:
+  min_hits: 3
+  max_age: 30
+  max_tentative_age: 2
+  render_max_age: 2
+  history_size: 30
+  class_vote_window: 12
+  confidence_smoothing: 0.70
+  kalman:
+    initial_position_variance: 25.0
+    initial_velocity_variance: 400.0
+    measurement_position_variance: 9.0
+    measurement_size_variance: 16.0
+    process_position_noise: 4.0
+    process_size_noise: 2.0
+  association:
+    iou_weight: 0.55
+    center_distance_weight: 0.25
+    mahalanobis_weight: 0.20
+    min_iou: 0.01
+    max_center_distance: 2.50
+    max_mahalanobis: 16.0
+    first_stage_max_cost: 0.78
+    second_stage_max_cost: 0.88
+    class_aware: true
+
+video:
+  codec: mp4v
+  fallback_codecs: [avc1, XVID]
+  fallback_fps: 25.0
+  overwrite: false
+  preserve_audio: false
+  progress_interval: 100
+
+visualization:
+  enabled: true
+  line_thickness: 2
+  font_scale: 0.55
+  show_confidence: true
+  show_trails: true
+  trail_length: 24
+  show_statistics: true
+
+counting:
+  enabled: true
+  line_enabled: false
+  line_start: [0.10, 0.55]
+  line_end: [0.90, 0.55]
+  normalized_coordinates: true

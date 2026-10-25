@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.pytest-tmp/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Environments and editors
+.venv/
+venv/
+.env
+.env.*
+.idea/
+.vscode/
+
+# Models and generated inference artifacts
+*.pt
+*.onnx
+*.engine
+runs/
+outputs/
+*.run.json
+
+# Datasets and media are private-by-default. Add only assets with verified rights.
+data/*
+!data/README.md
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+# Operating systems
+.DS_Store
+Thumbs.db

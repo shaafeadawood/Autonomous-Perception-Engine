@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autonomous-perception-engine"
+version = "0.1.0"
+description = "YOLO11, Kalman-filter, and Hungarian-assignment multi-object tracking for road video"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = "AGPL-3.0-only"
+authors = [{ name = "Shaafea Dawood" }]
+keywords = ["computer-vision", "object-detection", "multi-object-tracking", "yolo", "kalman-filter"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "numpy>=1.26,<3",
+  "opencv-python>=4.9,<6",
+  "PyYAML>=6,<7",
+  "scipy>=1.11,<2",
+  "ultralytics>=8.3,<9",
+]
+
+[project.optional-dependencies]
+evaluation = ["motmetrics>=1.4,<2"]
+dev = [
+  "build>=1.2,<2",
+  "mypy>=1.11,<2",
+  "pytest>=8,<10",
+  "pytest-cov>=5,<8",
+  "ruff>=0.8,<1",
+  "types-PyYAML>=6,<7",
+]
+
+[project.scripts]
+ape = "autonomous_perception_engine.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/shaafeadawood/Autonomous-Perception-Engine"
+Repository = "https://github.com/shaafeadawood/Autonomous-Perception-Engine"
+Issues = "https://github.com/shaafeadawood/Autonomous-Perception-Engine/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers --strict-config --basetemp=.pytest-tmp"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+source = ["autonomous_perception_engine"]
+
+[tool.coverage.report]
+fail_under = 70
+show_missing = true
+skip_covered = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+pretty = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["cv2.*", "motmetrics.*", "ultralytics.*"]
+ignore_missing_imports = true

@@ -1,0 +1,2 @@
+# Convenience installer. pyproject.toml is the authoritative dependency definition.
+-e .[evaluation]

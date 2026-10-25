@@ -1,0 +1,16 @@
+# A slower starting point for higher-resolution inference. Tune on labeled data.
+detector:
+  model: yolo11s.pt
+  image_size: 960
+  confidence_high: 0.45
+  confidence_low: 0.10
+  nms_iou: 0.65
+
+tracker:
+  min_hits: 4
+  max_age: 45
+  association:
+    iou_weight: 0.60
+    center_distance_weight: 0.20
+    mahalanobis_weight: 0.20
+    first_stage_max_cost: 0.75
